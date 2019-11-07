@@ -124,9 +124,9 @@ GameObject:
   - component: {fileID: 42696242}
   - component: {fileID: 42696241}
   - component: {fileID: 42696244}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: _Hero
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,7 +162,8 @@ MonoBehaviour:
   speed: 30
   rollMult: -45
   pitchMult: 30
-  shieldLevel: 1
+  gameRestartDelay: 2
+  _shieldLevel: 1
 --- !u!4 &42696243
 Transform:
   m_ObjectHideFlags: 0
@@ -197,6 +198,10 @@ MonoBehaviour:
   isOnScreen: 1
   camWidth: 0
   camHeight: 0
+  offRight: 0
+  offLeft: 0
+  offUp: 0
+  offDown: 0
 --- !u!1 &106251485
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +215,7 @@ GameObject:
   - component: {fileID: 106251489}
   - component: {fileID: 106251488}
   - component: {fileID: 106251487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +258,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106251485}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -303,28 +308,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106251485}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &290638397 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8456851503260520303, guid: 9e3a3fd191261784387bf697b024f7d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 8456851503548761426}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &290638398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290638397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1829fe7cd36ebf046b28bffcfc3c9080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  fireRate: 0.3
-  health: 10
-  score: 100
 --- !u!1 &563917931
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 746722101}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +420,7 @@ GameObject:
   - component: {fileID: 1286239054}
   - component: {fileID: 1286239053}
   - component: {fileID: 1286239052}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +511,7 @@ GameObject:
   - component: {fileID: 1970633556}
   - component: {fileID: 1970633555}
   - component: {fileID: 1970633554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,6 +601,8 @@ GameObject:
   - component: {fileID: 2014630534}
   - component: {fileID: 2014630533}
   - component: {fileID: 2014630532}
+  - component: {fileID: 2014630536}
+  - component: {fileID: 2014630535}
   m_Layer: 0
   m_Name: _MainCamera
   m_TagString: MainCamera
@@ -689,6 +674,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014630535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014630531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6567f0989b2b03546a82d6aac6b1d14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabEnemies:
+  - {fileID: 8456851503260520303, guid: 9e3a3fd191261784387bf697b024f7d9, type: 3}
+  enemySpawnPerSecond: 0.5
+  enemyDefaultPadding: 1.5
+--- !u!114 &2014630536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014630531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50fd978ee12e8744b91b6122ec64cabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  keepOnScreen: 0
+  isOnScreen: 1
+  camWidth: 0
+  camHeight: 0
+  offRight: 0
+  offLeft: 0
+  offUp: 0
+  offDown: 0
 --- !u!1001 &8456851503548761426
 PrefabInstance:
   m_ObjectHideFlags: 0
