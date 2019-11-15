@@ -34,7 +34,7 @@ public class Hero : MonoBehaviour {
             Debug.LogError("Hero.Awake() - Attemted to assign second Hero.S!");
         }
 
-        fireDelegate += TempFire;
+        //fireDelegate += TempFire;
     }
 
     void Update() {
@@ -64,14 +64,6 @@ public class Hero : MonoBehaviour {
         {
             fireDelegate();
         }
-    }
-
-    void TempFire()
-    {
-        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
-        projGO.transform.position = transform.position;
-        Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
-        rigidB.velocity = Vector3.up * projectileSpeed;
     }
 
     void OnTriggerEnter(Collider other)
